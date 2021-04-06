@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voiz.bg - Видеопоздрави от известни личности</title>
+    <link rel="shortcut icon" href="./assets/photos/favicon.png" type="image/png">
+    <a rel="stylesheet" href="./assets/css/reset.css"></a>
+    <!-- <a rel="stylesheet" href="./assets/css/style.css"></a> -->
+    <script src="./script.js"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f1f2f5;
+            color: #464646;
+        }
+
+        header a {
+            max-height: 44px;
+            vertical-align: top;
+            font-size: 16px;
+        }
+
+        header {
+            position: fixed;
+            z-index: 98;
+            top: 0;
+            right: 0;
+            left: 0;
+            width: 100%;
+            background: #296fb4;
+            height: 60px;
+        }
+
+        .input-type-search {
+            position: relative;
+            right: 60px;
+            width: 100%;
+            max-width: 260px;
+            height: 44px;
+            margin: 0 5px;
+            padding: 0 10px 0 40px;
+            border: none;
+            font-size: 16px;
+            background: url(./assets/photos/search.png) no-repeat 12px 18px #fff;
+            background-size: 15px 15px;
+        }
+
+        .container {
+            max-height: 60px;
+            display: flex;
+            position: relative;
+            width: calc(100% - 20px);
+            max-width: 1360px;
+            margin: 0 auto;
+            padding-bottom: 30px;
+            margin: 5px;
+            padding: 5px;
+        }
+
+        .toggle-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            width: 21px;
+            z-index: 99;
+        }
+
+        .toggle-button .bar {
+            right: 10px;
+            top: 3px;
+            margin: 3px;
+            height: 10px;
+            width: 100%;
+            background: #296fb4;
+            border-radius: 10px;
+        }
+
+        .button {
+            height: 83.53;
+            width: 44;
+            position: relative;
+            display: inline-block;
+            margin: 0;
+            padding: 10px 20px;
+            font-family: Corsa-Grotesk;
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            text-decoration: none;
+            background: #fff;
+            border: 1px solid white;
+            border-radius: 0;
+            cursor: pointer;
+            margin: 0 3px;
+        }
+
+        .button:hover {
+            background: #296fb4;
+            color: white;
+            transition: all 0.3s linear;
+        }
+
+        .logo {
+            width: 102px;
+            height: 50px;
+            margin-bottom: 6px;
+        }
+
+        .container-under-header {
+            display: flex;
+            position: relative;
+            top: 25px;
+            background: #296fb4;
+            justify-content: center;
+        }
+
+        .container-buttons {
+            display: flex;
+            position: absolute;
+            right: 5px;
+            top: 3px;
+
+            margin: 0 5px;
+            padding: 5px;
+        }
+
+        .logo-white {
+            height: 48px;
+            width: 150px;
+            margin: 0 20px;
+        }
+
+        .bg-christmas {
+            font-size: 20px;
+            color: white;
+            margin: 8px 0px;
+        }
+
+        .slogan {
+            margin: 0;
+            margin-top: 22px;
+            display: block;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #296fb4;
+            padding: 10px 10px;
+        }
+
+        #categories {
+            margin-left: 60px;
+            float: left;
+            left: 20px;
+            width: 230px;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        a {
+            padding: 5px 10px;
+            display: inline-block;
+            margin: 10px;
+            text-decoration: none;
+            color: #464646;
+            font-size: 20px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            font-family: Corsa-Grotesk;
+        }
+
+        #categories a {
+            position: relative;
+            z-index: 2;
+            display: block;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 400;
+            color: #fff;
+            border-radius: 40px;
+            background: #296fb4;
+            transition: all 0.3s linear;
+        }
+
+        .container-main {
+            background: #f1f8ff;
+            width: 100%;
+            height: 100%;
+        }
+
+        #categories .charity-category a {
+            background: #b1dde4;
+        }
+
+        #categories a.active {
+            color: #fff;
+            background: #df4c73;
+            border-color: #df4c73;
+            transition: all 0.3s linear;
+        }
+
+        #categories a:hover {
+            color: #fff;
+            background: #df4c73;
+            border-color: #df4c73;
+            transition: all 0.3s linear;
+        }
+
+        .partner {
+            position: relative;
+            display: inline-block;
+            width: 200px;
+            height: 300px;
+            overflow: hidden;
+            vertical-align: top;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+
+        }
+
+        .partner-title h2 {
+            color: #296fb4;
+        }
+
+        .partner-title h2,
+        .partner-title span {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            /* position: absolute; */
+        }
+
+        .partner-price {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            padding: 3px 7px;
+            text-align: center;
+            font-size: 14px;
+            color: #fff;
+            background: #00000036;
+            border-radius: 5px;
+        }
+
+        input,
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .partner-title {
+            height: 100px;
+            max-width: 200px;
+            overflow: hidden;
+            margin-top: -10px;
+            padding: 20px 10px 5px;
+            text-align: left;
+            color: #464646;
+            font-size: 15px;
+            background: #fff;
+            border-radius: 0 0 10px 10px;
+        }
+
+        #partners {
+            display: grid;
+            /* grid-column-gap: 15px; */
+            justify-content: start;
+            grid-template-columns: repeat(5, 20%);
+            max-width: 1150px;
+            margin-left: 20px;
+            text-align: left;
+        }
+
+        #partners a:hover {
+            transform: scale(1.05);
+            transition: all 0.3s linear;
+        }
+
+        @media all and (max-width: 1650px) {
+            #categories {
+                margin-left: 40px;
+                padding-left: 30px;
+            }
+        }
+
+        @media all and (max-width: 1550px) {
+            #categories {
+                margin-left: 25px;
+            }
+        }
+
+        @media all and (max-width: 1450px) {
+            #categories {
+                margin-left: 10px;
+                padding-left: 20px;
+            }
+        }
+
+        @media all and (max-width: 1350px) {
+            #partners {
+                display: grid;
+                grid-template-columns: repeat(4, 25%);
+            }
+
+            #categories {
+                margin-left: 0;
+                padding-left: 10px;
+            }
+        }
+
+        @media all and (max-width: 1100px) {
+            #partners {
+                display: grid;
+                grid-template-columns: repeat(3, 33.3%);
+            }
+
+            #categories {
+                margin-left: 0;
+            }
+        }
+
+        @media all and (max-width: 900px) {
+            #partners {
+                display: grid;
+                grid-template-columns: repeat(2, 50%);
+            }
+
+            #categories {
+                margin-left: 0;
+            }
+
+            /* ul {
+                display: inline-block;
+                position: relative;
+                top: 0;
+                flex-direction: row;
+            } */
+        }
+
+
+        @media all and (max-width: 720px) {
+            .toggle-button {
+                margin: 0;
+                padding: 0;
+                width: 50px;
+                display: flex;
+                right: 15px;
+                top: 5px;
+            }
+
+            .container-under-header {
+                width: 100%;
+            }
+
+            .button-white {
+                display: none;
+                width: 100%;
+            }
+
+            /* #categories {
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+            } */
+        }
+
+        @media all and (max-width: 680px) {
+            #partners {
+                display: grid;
+                grid-template-columns: repeat(1, 100%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="container">
+                <img src="./assets/photos/logo.png" alt="logo" class="logo">
+                <div class="container-buttons">
+                    <form method="GET" action="/search/">
+                        <input class="input-type-search" type="text" name="search" placeholder="Търси по име"
+                            autocomplete="off" />
+                    </form>
+                    <a href="#" class="toggle-button">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </a>
+                    <a class="button button-white" href="/userLogin/">Вход</a>
+                    <a class="button button-white" href="/userRegister/">Регистрация</a>
+                    <a class="button button-white" href="/partnerLogin/">Вход за артисти</a>
+                </div>
+            </div>
+        </header>
+        <div class="container-under-header">
+            <img src="./assets/photos/logo_white.png" alt="Българската Коледа" class="logo-white">
+            <div class="bg-christmas"> В кампанията събрахме 22 162лв. Благодарим на всички звезди и дарители!</div>
+        </div>
+
+        <h2 class="slogan">Поръчай видеопоздрав за приятели!</h2>
+
+        <div class="container-main">
+            <div id="categories">
+                <!--                <h3>Категории</h3>-->
+                <ul>
+                    <li>
+                        <a href="/category-search/" class="active">
+                            Най-търсени</a>
+                    </li>
+                    <li>
+                        <a href="/category-all/" class="">
+                            Всички</a>
+                    </li>
+                    <li>
+                        <a href="/category-actors/" class="">
+                            Актьори</a>
+                    </li>
+                    <li>
+                        <a href="/category-musicians/" class="">
+                            Музиканти</a>
+                    </li>
+                    <li>
+                        <a href="/category-live-calls/" class="">
+                            Видео разговори</a>
+                    </li>
+                    <li>
+                        <a href="/category-popfolk/" class="">
+                            Поп фолк</a>
+                    </li>
+                    <li>
+                        <a href="/category-influencers/" class="">
+                            Инфлуенсъри</a>
+                    </li>
+                    <li>
+                        <a href="/category-tiktok/" class="">
+                            TikTok</a>
+                    </li>
+                    <li>
+                        <a href="/category-reality-tv/" class="">
+                            Риалити ТВ</a>
+                    </li>
+                    <li>
+                        <a href="/category-models/" class="">
+                            Модели</a>
+                    </li>
+                    <li>
+                        <a href="/category-sportsmen/" class="">
+                            Спортисти</a>
+                    </li>
+                    <li>
+                        <a href="/category-santa/" class="">
+                            Дядо Коледа</a>
+                    </li>
+                    <li class="charity-category"><a href="/category-charity/">Видео с кауза</a></li>
+                </ul>
+            </div>
+            <div id="partners">
+                <a href="/kocetoifunky/">
+                    <div class="partner"
+                        style="background-image: url('https://static.voiz.bg/profile/902/s6_5f8efba150d17.jpg');">
+                        <div class="partner-price">200 лв.</div>
+                    </div>
+                    <div class="partner-title">
+                        <h2>Коцето и Фънки</h2>
+                        <span>Музиканти и Шоумени</span>
+                    </div>
+                </a>
+                <a href="/efremov/">
+                    <div class="partner"
+                        style="background-image: url('https://static.voiz.bg/profile/97/08955fc4-c1f3-46d8-9874-545bb4b2493b.jpeg');">
+                        <div class="partner-price">50 лв.</div>
+                    </div>
+                    <div class="partner-title">
+                        <h2>Кирил Ефремов</h2><span>Актьор</span>
+                    </div>
+                </a>
+                <a href="/100kila/">
+                    <div class="partner"
+                        style="background-image: url('https://static.voiz.bg/profile/43/profile-(1).jpg');">
+                        <div class="partner-price">100 лв.</div>
+                    </div>
+                    <div class="partner-title">
+                        <h2>Явор Янакиев - 100 КИЛА</h2><span>Рап изпълнител</span>
+                    </div>
+                </a>
+                <a href="/ivodimchev/">
+                    <div class="partner"
+                        style="background-image: url('https://static.voiz.bg/profile/1130/c9d9ba1ede17b113d9b9dd45e829b7dc.jpg');">
+                        <div class="partner-price">70 лв.</div>
+                    </div>
+                    <div class="partner-title">
+                        <h2>Ivo Dimchev</h2><span>Артист</span>
+                    </div>
+                </a>
+                <a href="/ktodorova/">
+                    <div class="partner"
+                        style="background-image: url('https://static.voiz.bg/profile/1098/f9019dd6e40c03ee6b134cd24b8a02b9.jpg');">
+                        <div class="partner-price">100 лв.</div>
+                    </div>
+                    <div class="partner-title">
+                        <h2>Камелия Тодорова</h2><span>Певица</span>
+                    </div>
+                </a>
+                <a href="/konstantin/">
+                    <div class="partner"
+                        style="background-image: url('https://static.voiz.bg/profile/899/160e70f997fdb8b7531b273f27f97305.jpeg');">
+                        <div class="partner-price">100 лв.</div>
+                    </div>
+                    <div class="partner-title">
+                        <h2>Константин</h2><span>Изпълнител</span>
+                    </div>
+                </a>
+                <a href="/tedd/">
+                    <div class="partner"
+                        style="background-image: url('https://static.voiz.bg/profile/975/42e5ad63844c696613498df38d9451c2.jpg');">
+                        <div class="partner-price">10.00 лв.</div>
+                    </div>
+                    <div class="partner-title">
+                        <h2>Теодор teddcs Борисов</h2><span>Стриймър, коментатор</span>
+                    </div>
+                </a>
+                <a href="/antoanet/">
+                    <div class="partner"
+                        style="background-image: url('https://static.voiz.bg/profile/90/2q_5f7cad1fc858e.jpg');">
+                        <div class="partner-price">25.00 лв.</div>
+                    </div>
+                    <div class="partner-title">
+                        <h2>Антоанет Попова</h2><span>YouTuber</span>
+                    </div>
+                </a>
+                <a href="/geripetkova/">
+                    <div class="partner"
+                        style="background-image: url('https://static.voiz.bg/profile/93/img_4319.jpg');">
+                        <div class="partner-price">15.00 лв.</div>
+                    </div>
+                    <div class="partner-title">
+                        <h2>Geri Petkova</h2><span>YouTuber</span>
+                    </div>
+                </a>
+                <a href="/ivanaalexandrova/">
+                    <div class="partner"
+                        style="background-image: url('https://static.voiz.bg/profile/96/image00002.jpeg');">
+                        <div class="partner-price">25.00 лв.</div>
+                    </div>
+                    <div class="partner-title">
+                        <h2>Ивана Александрова</h2><span>Инфлуенсър</span>
+                    </div>
+                </a>
+                <a href="/flora/">
+                    <div class="partner"
+                        style="background-image: url('https://static.voiz.bg/profile/32/img_0661.jpg');">
+                        <div class="partner-price">30.00 лв.</div>
+                    </div>
+                    <div class="partner-title">
+                        <h2>Flora </h2><span>YouTuber, иНфЛуЕнСъР</span>
+                    </div>
+                </a>
+                <a href="/saffrona/">
+                    <div class="partner lozad"
+                        data-background-image="https://static.voiz.bg/profile/206/9429b7d9-eaa3-498c-b50e-ddcdcd6d33ba.jpeg">
+                        <div class="partner-price">31.73 лв.</div>
+                    </div>
+                    <div class="partner-title">
+                        <h2>SAFFRONA</h2><span>най-висшата форма на човека</span>
+                    </div>
+                </a>
+                <a href="/deyan/">
+                    <div class="partner"
+                        style="background-image: url('https://static.voiz.bg/profile/37/viber_изображение_2020-06-18_01-37-57.jpg');">
+                        <div class="partner-price">50.00 лв.</div>
+                    </div>
+                    <div class="partner-title">
+                        <h2>ДЕЯН НЕДЕЛЧЕВ</h2><span>ПЕВЕЦ, КОМПОЗИТОР, ШОУМЕН</span>
+                    </div>
+                </a>
+                <a href="/snowflake/">
+                    <div class="partner"
+                        style="background-image: url('https://static.voiz.bg/profile/1055/5341282246fd29d867f82f2f09d22515.jpg');">
+                        <div class="partner-price">25.00 лв.</div>
+                    </div>
+                    <div class="partner-title">
+                        <h2>Вели Георгиева - Снежанка</h2><span></span>
+                    </div>
+                </a>
+                <a href="/geripetkova/">
+                    <div class="partner"
+                        style="background-image: url('https://static.voiz.bg/profile/93/img_4319.jpg');">
+                        <div class="partner-price">15.00 лв.</div>
+                    </div>
+                    <div class="partner-title">
+                        <h2>Geri Petkova</h2><span>YouTuber</span>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
