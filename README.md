@@ -1,4 +1,4 @@
-## Representation of the website voiz.bg. It is used only for training purposes.
+## Representation of the homepage of website voiz.bg. It is used only for training purposes.
 
 ### Used technologies: HTML, CSS
 
